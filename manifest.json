@@ -1,0 +1,10 @@
+{
+    "name": "AuraWave Presentation",
+    "short_name": "AuraWave",
+    "description": "Gesture-controlled presentation remote using computer vision",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#0f1418",
+    "theme_color": "#0f1418",
+    "orientation": "landscape"
+}

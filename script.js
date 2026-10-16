@@ -824,4 +824,18 @@ document.addEventListener('fullscreenchange', () => {
     }
 });
 
-console.log("✅ All systems ready!");
+console.log("✅ All systems ready!")
+// ============================================================
+// SERVICE WORKER REGISTRATION (for offline PWA)
+// ============================================================
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./service-worker.js')
+            .then((registration) => {
+                console.log('✅ Service Worker registered:', registration.scope);
+            })
+            .catch((error) => {
+                console.log('❌ Service Worker registration failed:', error);
+            });
+    });
+}
