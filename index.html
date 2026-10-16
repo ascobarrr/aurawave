@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AuraWave Presentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- MediaPipe Dependencies -->
+    <script src="libs/pdfjs/build/pdf.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <section class="home-page" id="homePage" aria-labelledby="homeTitle">
+        <header class="home-topbar">
+            <div class="home-brand"><span class="home-brand-mark">A</span> AuraWave Presentation</div>
+            <div class="home-live">Interactive workspace</div>
+        </header>
+
+        <div class="home-content">
+            <div class="home-copy">
+                <p class="home-eyebrow">A new way to present</p>
+                <h2 id="homeTitle">Your hands.<br />Your <span>stage.</span></h2>
+                <p class="home-description">Move beyond the clicker. Bring your ideas to life with a presentation space controlled by natural gestures.</p>
+                <div class="home-actions">
+                    <button id="startPresentationBtn" type="button">Enter the studio <span aria-hidden="true">↗</span></button>
+                    <button id="shuffleSceneBtn" type="button">Rearrange scene</button>
+                    <p class="home-drag-hint">Drag a module to explore</p>
+                </div>
+            </div>
+
+            <div class="home-scene" id="homeScene" aria-label="Interactive gesture studio modules">
+                <div class="scene-core" aria-hidden="true"><span>✳</span></div>
+                <div class="orbit-object" data-module="slides" data-title="Your slides" data-description="Bring image decks and PDF presentations into the studio." role="button" tabindex="0" aria-label="Your slides. Use arrow keys to move.">
+                    <span class="orbit-icon" aria-hidden="true">▤</span>
+                    <span class="orbit-label">Your slides</span>
+                    <span class="orbit-detail">A canvas for ideas</span>
+                </div>
+                <div class="orbit-object" data-module="gestures" data-title="Gesture control" data-description="Swipe through your deck and navigate naturally, without a clicker." role="button" tabindex="0" aria-label="Gesture control. Use arrow keys to move.">
+                    <span class="orbit-icon" aria-hidden="true">⌁</span>
+                    <span class="orbit-label">Gesture control</span>
+                    <span class="orbit-detail">Move with intention</span>
+                </div>
+                <div class="orbit-object" data-module="laser" data-title="Laser pointer" data-description="Point to highlight the details that matter, without leaving a trace." role="button" tabindex="0" aria-label="Laser pointer. Use arrow keys to move.">
+                    <span class="orbit-icon" aria-hidden="true">◎</span>
+                    <span class="orbit-label">Laser pointer</span>
+                    <span class="orbit-detail">Focus every detail</span>
+                </div>
+                <div class="orbit-object" data-module="draw" data-title="Live drawing" data-description="Pinch to sketch and annotate directly on your slides." role="button" tabindex="0" aria-label="Live drawing. Use arrow keys to move.">
+                    <span class="orbit-icon" aria-hidden="true">✳</span>
+                    <span class="orbit-label">Live drawing</span>
+                    <span class="orbit-detail">Make ideas visible</span>
+                </div>
+                <div class="scene-caption"><span id="sceneMessage">Select a module to learn more</span><strong>MOVE · DISCOVER · PRESENT</strong></div>
+            </div>
+        </div>
+    </section>
+
+    <main class="app-shell" id="appShell" hidden>
+    <h1>AuraWave Presentation</h1>
+    <button class="upload-btn" id="uploadBtn">Upload slides</button>
+    <input type="file" id="slideUpload" accept="image/*,application/pdf" multiple style="display:none;">
+
+    <div class="slideshow-container">
+        <div class="slide slide-1 active">
+            <h2>Welcome</h2>
+            <p>Upload images or a PDF to start presenting.</p>
+            <div class="slide-number">1 / 5</div>
+        </div>
+        <div class="slide slide-2">
+            <h2>Point to highlight</h2>
+            <p>Raise your index finger to activate the laser pointer.</p>
+            <div class="slide-number">2 / 5</div>
+        </div>
+        <div class="slide slide-3">
+            <h2>Pinch to draw</h2>
+            <p>Pinch your thumb and index to draw neon lines on the slides.</p>
+            <div class="slide-number">3 / 5</div>
+        </div>
+        <div class="slide slide-4">
+            <h2>Open palm to erase</h2>
+            <p>Open your hand wide to clear all drawings instantly.</p>
+            <div class="slide-number">4 / 5</div>
+        </div>
+        <div class="slide slide-5">
+            <h2>Swipe to navigate</h2>
+            <p>Swipe your hand left or right to change slides.</p>
+            <div class="slide-number">5 / 5</div>
+        </div>
+        <canvas id="drawCanvas"></canvas>
+        <canvas id="laserCanvas"></canvas>
+    </div>
+
+    <div id="slideCounter">Slide 1 of 5</div>
+    <div id="status">Starting up...</div>
+    <div id="gesture-status">Detecting...</div>
+    <div class="hint">Point · Pinch · Open palm · Swipe left or right</div>
+
+    <div class="camera-pip">
+        <video id="webcam" playsinline></video>
+        <canvas id="overlay"></canvas>
+    </div>
+
+    <button id="presentBtn">Present</button>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
